@@ -1,0 +1,12 @@
+# object files
+*.o
+
+# executáveis compilados
+projeto_ps/prepare/prepare
+projeto_ps/scheduler/scheduler
+
+# dados gerados
+projeto_ps/tasks_data/*.bin
+
+# logs
+*.log
