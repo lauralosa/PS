@@ -1,0 +1,5 @@
+*.o
+prepare
+scheduler
+projeto_ps/tasks_data/*.bin
+*.log
