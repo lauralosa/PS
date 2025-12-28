@@ -1,27 +1,21 @@
-# Variáveis de Compilação
+# Variáveis de compilação
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude -g
+CFLAGS = -Wall -Wextra -g
 
-# Pastas
-SRC_DIR = src
-INC_DIR = include
-BIN_DIR = .
+# Pasta
+SRC_DIR = .
+BIN_DIR = ..
 
-# Alvos (Executáveis)
-TARGETS = prepare scheduler
+# Alvo (executável)
+TARGET = prepare_exec
 
-# Regra padrão: compila tudo
-all: $(TARGETS)
+all: $(TARGET)
 
-# Compilação do programa prepare
-prepare: $(SRC_DIR)/prepare.c $(INC_DIR)/task.h
-	$(CC) $(CFLAGS) $(SRC_DIR)/prepare.c -o $(BIN_DIR)/prepare
+# Compilação
+$(TARGET): $(SRC_DIR)/prepare.c $(SRC_DIR)/task.h
+	$(CC) $(CFLAGS) $(SRC_DIR)/prepare.c -o $(BIN_DIR)/$(TARGET)
 
-# Compilação do programa scheduler
-scheduler: $(SRC_DIR)/scheduler.c $(INC_DIR)/task.h
-	$(CC) $(CFLAGS) $(SRC_DIR)/scheduler.c -o $(BIN_DIR)/scheduler
-
-# Limpeza de ficheiros temporários e executáveis
+# Limpeza
 clean:
-	rm -f $(BIN_DIR)/prepare $(BIN_DIR)/scheduler *.bin *.txt
+	rm -f $(BIN_DIR)/$(TARGET)
 	@echo "Limpeza concluída!"

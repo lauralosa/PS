@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <fcntl.h>    // Para open()
 #include <unistd.h>   // Para write() e close()
-#include "../include/task.h"
+#include "../prepare/task.h"
 
 int main(int argc, char *argv[]) {
     // 1. Validar se temos os 3 argumentos: ./prepare <id> <duration>
@@ -21,12 +21,12 @@ int main(int argc, char *argv[]) {
     // 3. Criar o caminho do ficheiro dentro da pasta 'data'
     char filepath[64];
     // Colocamos o prefixo "data/" antes do nome do ficheiro
-    sprintf(filepath, "data/task_%d.bin", t.id); 
+    sprintf(filepath, "tasks_data/task_%d.bin", t.id); 
 
     // 4. Gravar a usar System Calls
     int fd = open(filepath, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (fd == -1) {
-        perror("Erro ao abrir ficheiro (certifica-te que a pasta 'data' existe)");
+        perror("Erro ao abrir ficheiro (certifica-te que a pasta 'tasks_data' existe)");
         return 1;
     }
 
