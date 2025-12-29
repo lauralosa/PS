@@ -1,21 +1,23 @@
-# Variáveis de compilação
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 
-# Pasta
-SRC_DIR = .
-BIN_DIR = ..
+# Nome do executável final
+TARGET = prepare
 
-# Alvo (executável)
-TARGET = prepare_exec
+# Objetos necessários
+OBJS = prepare.o functions.o
 
 all: $(TARGET)
 
-# Compilação
-$(TARGET): $(SRC_DIR)/prepare.c $(SRC_DIR)/task.h
-	$(CC) $(CFLAGS) $(SRC_DIR)/prepare.c -o $(BIN_DIR)/$(TARGET)
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Limpeza
+prepare.o: prepare.c functions.h
+	$(CC) $(CFLAGS) -c prepare.c
+
+functions.o: functions.c functions.h
+	$(CC) $(CFLAGS) -c functions.c
+
 clean:
-	rm -f $(BIN_DIR)/$(TARGET)
+	rm -f *.o $(TARGET)
 	@echo "Limpeza concluída!"
